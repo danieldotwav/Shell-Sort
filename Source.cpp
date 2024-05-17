@@ -1,5 +1,6 @@
 #include <iostream>
 #include <array>
+#include <vector>
 #include <random>
 using namespace std;
 
@@ -8,70 +9,65 @@ const int LARGE = 50;
 const int RANGE = 20;
 
 // Utility functions
-int* generateRandomArrayOfSize(int size);
-void printArray(int* a, int size);
+vector<int> generateRandomVectorOfSize(int size);
+void printVector(vector<int>& vec);
 
 // Sorting Algorithms
-void shellSort(int* a, int size, int num_comparisons, int num_items_moved);
+void shellSort(vector<int>& vec, int num_comparisons, int num_items_moved);
+//void insertionSort(vector<int>& vec, int num_comparisons, int num_items_moved);
 
 int main() {
 	// Use the current time as a seed for the random generator
 	srand(time(0));
 
-	// Generate a random array of size 15
-	int* my_arr = generateRandomArrayOfSize(15);
+	// Generate a random vector of size 15
+	vector<int> my_vector = generateRandomVectorOfSize(20);
+	vector<int> my_vector_copy = my_vector;
 
-	// Print array to verify randomness
-	printArray(my_arr, 15);
+	// Print vector
+	printVector(my_vector);
 
-    // Free up dynamically allocated memory
-    delete[] my_arr;
+	// Shell Sort
+	shellSort(my_vector, 0, 0);
+
+	// Print vector again
+	printVector(my_vector);
 
 	return 0;
 }
 
-void shellSort(int* a, int size, int num_comparisons, int num_items_moved) {
+void shellSort(vector<int>& vec, int num_comparisons, int num_items_moved) {
+	for (int gap = vec.size() / 2; gap >= 1; gap /= 2) {
+		for (int i = gap; i < vec.size(); ++i) {
+			int temp = vec[i];
+			int j = i;
 
-}
-
-// This function takes in 
-int* generateRandomArrayOfSize(int size) {
-    if (size == SMALL) {
-        // Dynamically allocate an array of size 15
-        int* arr = new int[SMALL];
-
-        // Generate 15 random values between 0 and 20
-        for (int i = 0; i < SMALL; ++i) {
-            arr[i] = rand() % RANGE;
-        }
-
-        return arr;
-    }
-    else if (size == LARGE) {
-        // Dynamically allocate an array of size 50
-        int* arr = new int[LARGE];
-
-        // Generate 50 random values between 0 and 20
-        for (int i = 0; i < LARGE; ++i) {
-            arr[i] = rand() % RANGE;
-        }
-
-        return arr;
-    }
-    else {
-        cout << "Error: Unable to determine array size. Function parameter should be either SMALL or LARGE." << endl;
-        return nullptr;
-    }
-}
-
-void printArray(int* a, int size) {
-	cout << "[";
-	for (int i = 0; i < size; ++i) {
-		if (i == size - 1) {
-			cout << a[i] << "]";
-		}
-		else {
-			cout << a[i] << ", ";
+			while (j >= gap && vec[j - gap] > temp) {
+				vec[j] = vec[j - gap];
+				j -= gap;
+			}
+			vec[j] = temp;
 		}
 	}
+}
+
+vector<int> generateRandomVectorOfSize(int size) {
+	vector<int> vec;
+	for (int i = 0; i < size; ++i) {
+		vec.push_back(rand() % 20);
+	}
+	return vec;
+}
+
+void printVector(vector<int>& vec) {
+	cout << "[";
+	for (int i = 0; i < vec.size(); ++i) {
+		if (i == vec.size() - 1) {
+			cout << vec[i] << "]";
+		}
+		else {
+			cout << vec[i] << ", ";
+		}
+	}
+	cout << endl;
 }
