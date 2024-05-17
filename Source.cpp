@@ -7,8 +7,12 @@ const int SMALL = 15;
 const int LARGE = 50;
 const int RANGE = 20;
 
+// Utility functions
 int* generateRandomArrayOfSize(int size);
 void printArray(int* a, int size);
+
+// Sorting Algorithms
+void shellSort(int* a, int size, int num_comparisons, int num_items_moved);
 
 int main() {
 	// Use the current time as a seed for the random generator
@@ -24,6 +28,10 @@ int main() {
     delete[] my_arr;
 
 	return 0;
+}
+
+void shellSort(int* a, int size, int num_comparisons, int num_items_moved) {
+
 }
 
 // This function takes in 
