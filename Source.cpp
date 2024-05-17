@@ -1,5 +1,4 @@
 #include <iostream>
-#include <array>
 #include <vector>
 #include <random>
 using namespace std;
@@ -86,8 +85,12 @@ void shellSort(vector<int>& vec, int& num_comparisons, int& num_items_moved) {
 			while (j >= gap && vec[j - gap] > temp) {
 				vec[j] = vec[j - gap];
 				j -= gap;
+
+				++num_comparisons;
+				++num_items_moved;
 			}
 			vec[j] = temp;
+			++num_items_moved;
 		}
 	}
 }
@@ -111,6 +114,7 @@ void insertionSort(vector<int>& vec, int& num_comparisons, int& num_items_moved)
 				num_items_moved++;
 			}
 			vec[j + 1] = key;
+			++num_items_moved;
 		}
 	}
 }
