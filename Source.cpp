@@ -4,8 +4,6 @@
 #include <random>
 using namespace std;
 
-const int SMALL = 15;
-const int LARGE = 50;
 const int RANGE = 20;
 const int MAX_ELEMENTS = 50;
 
@@ -43,7 +41,7 @@ int main() {
 				vector<int> my_vector = generateRandomVectorOfSize(num_elements);
 				vector<int> my_vector_copy = my_vector;
 
-				cout << "Test case with " << num_elements << " elements.";
+				cout << "Test case with " << num_elements << " elements\n";
 				cout << "Unsorted array with " << num_elements << " to be sorted:\n";
 				printVector(my_vector);
 
@@ -51,15 +49,18 @@ int main() {
 				int num_comparisons = 0, num_items_moved = 0;
 				insertionSort(my_vector, num_comparisons, num_items_moved);
 
-				cout << "**Results of Insertion Sort\n";
+				cout << "\n**Results of Insertion Sort\n";
 				cout << "Insertion sort comparisons: " << num_comparisons << endl;
 				cout << "Insertion sort number of items moved: " << num_items_moved << endl;
 
 				// Shell Sort
-				shellSort(my_vector, num_comparisons, num_items_moved);
+				shellSort(my_vector_copy, num_comparisons, num_items_moved);
+				cout << "\n**Results of Shell Sort\n";
+				cout << "Insertion sort comparisons: " << num_comparisons << endl;
+				cout << "Insertion sort number of items moved: " << num_items_moved << endl;
 
 				// Print vector again
-				printVector(my_vector);
+				printVector(my_vector_copy);
 			}
 		}
 		catch (const std::invalid_argument& e) {
@@ -126,7 +127,7 @@ void printVector(vector<int>& vec) {
 	cout << "[";
 	for (int i = 0; i < vec.size(); ++i) {
 		if (i == vec.size() - 1) {
-			cout << vec[i] << "]";
+			cout << vec[i];
 		}
 		else {
 			cout << vec[i] << ", ";
