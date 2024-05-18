@@ -53,6 +53,7 @@ int main() {
 				cout << "Insertion sort number of items moved: " << num_items_moved << endl;
 
 				// Shell Sort
+				num_comparisons = 0, num_items_moved = 0;
 				shellSort(my_vector_copy, num_comparisons, num_items_moved);
 				cout << "\n**Results of Shell Sort\n";
 				cout << "Insertion sort comparisons: " << num_comparisons << endl;
@@ -60,6 +61,8 @@ int main() {
 
 				// Print vector again
 				printVector(my_vector_copy);
+
+				cout << endl;
 			}
 		}
 		catch (const std::invalid_argument& e) {
