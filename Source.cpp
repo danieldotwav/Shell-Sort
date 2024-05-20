@@ -3,7 +3,6 @@
 using namespace std;
 
 int main() {
-	// Use the current time as a seed for the random generator
 	srand(time(0));
 	int num_elements = 1;
 
